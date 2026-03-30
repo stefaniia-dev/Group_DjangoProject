@@ -1,0 +1,124 @@
+body {
+    background-color: #F3D1B5;
+    height: 100vh;
+}
+
+/*Makes everything in the body fit in the middle and not be hidde behind nav bar*/
+.center_calendar {
+    margin-left:15%;
+    padding:15px 90px;/* top padding, left side padding*/
+    height:80px;
+}
+
+.calendar_box {
+    margin: 20px auto;
+    max-width: 1300px;
+}
+
+/* month title */
+.calendar_box > h2 {
+    font-size: 40px;
+    text-align: center;
+    font-family: raleway;
+    font-weight: 360;
+    letter-spacing: 12px;
+    padding: 6px;
+    color: var(--BBDdarkBlue);
+}
+
+/*days and numbers*/
+.grid_box {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 7px;
+    border: 2px solid var(--BBDdarkTan);
+    padding: 10px;
+    background-color: var(--BBDpink);
+    border-radius: 20px;
+    /*days of the week text*/
+    text-align: center;
+    color: var(--BBDdarkBlue);
+    font-family: Calibri;
+    font-size: 20px;
+    font-weight: 570;
+}
+
+/* days of the month */
+.day {
+    padding-bottom: 70px;
+    padding-right: 5px;
+    padding-top: 5px;
+    border: 2px solid var(--BBDdarkBlue);
+    text-align: right;
+    background-color: var(--BBDlightBlue);
+    color: var(--BBDdarkBlue);
+    list-style-type: none;
+}
+
+.highlight {
+    background-color: var(--BBDteal);
+    border: 3px solid var(--BBDdarkBlue);
+    color: var(--BBDdarkBlue);
+}
+
+/* buttons */
+button {
+    padding: 7px;
+    margin: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--BBDlightBlue);
+}
+
+button[type="button"]:hover {
+    background-color: var(--BBDpink);
+}
+
+button[type="submit"]:hover {
+    background-color: var(--BBDpink);
+}
+
+/* view more button */
+/*is styled within line 75 of calendar_script*/
+
+/*styling for the content inside of the view event details widget*/
+#view_event_details h3 {
+    font-size: 40px;
+    justify-self: center;
+}
+
+#view_event_details h2 {
+    font-weight: bold;
+    font-size: 28px;
+    justify-self: center;
+}
+
+#view_event_details p {
+    font-size: 18px;
+}
+
+/*styling for each individual event being displayed in the daycell boxes*/
+.event_as_button {
+    padding: revert;
+    border-radius: revert;
+    margin: revert;
+}
+
+
+
+
+
+
+
+
+
+
+/*MEDIAAAAAA WHOOOO*/
+@media all and (max-width: 1000px) {
+.center_calendar {
+    margin-left:0%;
+    padding:70px 35px;
+}
+}

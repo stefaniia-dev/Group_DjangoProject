@@ -1,0 +1,226 @@
+:root {
+    --BBDteal: #1AAB93;
+    --BBDpink: #E48D78;
+    --BBDdarkTan: #D05F45;
+    --BBDdarkPink: #670000;
+    --BBDgrey: #5A6F75;
+    --BBDdarkBlue: #355764;
+    --BBDblack: #3D3E3F;
+    --BBDlightBlue: #ABB9BC;
+    --BBDbeige: #F1D1B5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+.errorlist { /*Hides this field is required text*/
+    display: none;
+
+}
+
+/*Styling of body*/
+body{
+    background-color: #F1D1B5;
+}
+
+/*!*Makes everything in the body fit in the middle and not be hidde behind nav bar*!*/
+.main_content{
+    margin-left:20%;
+    padding:16px 16px;/* top padding, left side padding*/
+    height:100px;
+
+}
+
+.form-control {
+    height: 50px;
+    width: 200px;
+    font-size: 16px;
+}
+
+.descriptionForm {
+    height: 100px;
+    width: 300px;
+    font-size: 16px;
+    word-wrap: break-word;
+}
+
+.modal {
+    height: 430px; /*change modal/box size*/
+    width: 400px; /*change modal/box size*/
+    font-size: 16px;
+    /*overflow: hidden;!*stops scrolling*!*/
+    /*background-color: #b11d1d;*/
+}
+
+button {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: #ADB9BC;
+}
+
+button[type="button"]:hover {
+    background-color: #E68E77;
+}
+
+button[type="submit"]:hover {
+    background-color: #E68E77;
+}
+
+
+@media all and (max-width: 1000px) {
+
+    button {
+        font-size: 40px;
+    }
+
+    h1 {
+        font-size: 80px;
+    }
+
+    .modal {
+        width: 700px; /*change modal/box size*/
+        height: 700px;
+        font-size: 40px;
+        /*background-color: #b11d1d;*/
+    }
+
+    .form-control {
+        height: 50px;
+        width: 400px;
+        font-size: 30px;
+    }
+
+    .descriptionForm {
+        height: 200px;
+        width: 400px;
+        font-size: 30px;
+        word-wrap: break-word;
+    }
+
+
+}
+
+@media all and (max-width: 800px) {
+
+    button {
+        font-size: 20px;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+}
+/*Size of the edit and delete button images*/
+.button_image_style{
+    height: 15px;
+    width: 15px;
+}
+
+
+
+/*-------------- Right click custom context menu ----------------------*/
+/*Event and goals right click menu*/
+.EventRightClickMenu {
+    width: 200px;
+    box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.3);
+    display: none;
+    position: fixed;
+    transition: opacity 500ms ease;
+
+}
+
+.EventRightClickMenu.active {
+    display: block; /*show menu*/
+
+}
+
+
+.EventRightClickMenu ul li a {
+    text-decoration: none;
+    display: inline-block;
+
+    padding: 20px 32px;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    color: black;
+
+    box-sizing: border-box;
+    border-bottom: 1px solid #000000;
+    border-left: 4px solid transparent;
+
+    background: white;
+
+    transition: all 400ms ease;
+
+}
+
+.EventRightClickMenu ul li a:hover {
+    background: #20AB93;
+    border-left: 4px solid #ba16a4;
+}
+
+.EventRightClickMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*Logs right click menu*/
+.LogsRightClickMenu {
+    width: 200px;
+    box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.3);
+    display: none;
+    position: fixed;
+    transition: opacity 500ms ease;
+
+}
+
+.LogsRightClickMenu.active {
+    display: block; /*show menu*/
+
+}
+
+
+.LogsRightClickMenu ul li a {
+    text-decoration: none;
+    display: inline-block;
+
+    padding: 20px 32px;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    color: black;
+
+    box-sizing: border-box;
+    border-bottom: 1px solid #000000;
+    border-left: 4px solid transparent;
+
+    background: white;
+
+    transition: all 400ms ease;
+
+}
+
+.LogsRightClickMenu ul li a:hover {
+    background: #20AB93;
+    border-left: 4px solid #ba16a4;
+}
+
+.LogsRightClickMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+

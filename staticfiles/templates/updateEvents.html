@@ -1,0 +1,101 @@
+{% load static %}{# allows css to work #}
+{% include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Weekly schedule</title>
+    <link rel="stylesheet" href="{% static 'css/weeklySchedule_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common_style.css' %}">
+    {# links to styling #}
+</head>
+<body>
+<div class="main_content">
+    <h1>Weekly Schedule</h1>
+ <!-- add new event pop up button -->
+    <button class="btn" onclick="newEvents.showModal()">Add New Event</button>
+
+ <!-- Update event pop up button -->
+    <button class="btn" onclick="updateEvents.showModal()">Update Event</button>
+
+
+    {# ---------------- Next and previous days ----------------------#}
+
+    <form action="{% url 'next_' weekDay%}" method="get">
+        <button type="submit">Next</button>
+    </form>
+    <form action="{% url 'prev' weekDay%}" method="get">
+        <button type="submit">Previous</button>
+    </form>
+
+    {# ---------------- Week name display ----------------------#}
+    <div class="container">
+        <div class="weekName">
+            <p>{{ weekDay|date:"l d" }}</p>{# day of the week 1 #}
+        </div>
+
+        <div>
+            <p>{{ weekDay2|date:"l d" }}</p>{# day of the week #}
+        </div>
+        <div>
+            <p>{{ weekDay3|date:"l d" }}</p>{# day of the week #}
+        </div>
+
+        {#------------------  Display events in respective columns -------------------------#}
+        {#    Current day events #}
+        <div class="day1EventDisplay">
+            {% for Events in day1_events %}
+                <br> <b>{{ Events.event_name }}</b>
+                <br>{{ Events.description }}<br>
+            {% endfor %}
+        </div>
+
+        {# Next day events #}
+        <div class="day2EventDisplay">
+            {% for Events in day2_events %}
+                <br> <b>{{ Events.event_name }}</b>
+                <br>{{ Events.description }}<br>
+            {% endfor %}
+        </div>
+
+        {#  Third day events  #}
+        <div class="day3EventDisplay">
+
+            {% for Events in day3_events %}
+                <br> <b>{{ Events.event_name }}</b>
+                <br>{{ Events.description }}<br>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+
+{#------------ Update event -------------------#}
+{#----- pop up --------#}
+<dialog id="updateEvents" class="modal" open = "open">
+    <div class="modal-box">
+        {# ---- Update Form -----  #}
+        <h3>Update Event</h3> {# Title #}
+        <form method="post" autocomplete="off" >
+    {% csrf_token %}
+    {{ event_form.as_p }}
+    <button type="submit">Update</button>
+</form>
+
+        <div class="modal-action">
+            <form method="get" action="{% url 'back_to_weekly' %}">
+                <button >Close</button>
+            </form>
+        </div>
+
+    </div>
+
+</dialog>
+
+
+
+
+</body>
+</html>

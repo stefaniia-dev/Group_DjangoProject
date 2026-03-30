@@ -1,0 +1,347 @@
+{% load static %}{# allows css to work #}
+{% include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Weekly schedule</title>
+    <link rel="stylesheet" href="{% static 'css/weeklySchedule_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common_style.css' %}">
+    {# links to styling #}
+</head>
+<body>
+<div class="main_content">
+    <h1>Weekly Schedule</h1>
+
+    <div class="buttonies">
+        <!-- add new event pop up button -->
+        <button class="btn" onclick="newEvents.showModal()">Add New Event</button>
+
+        {# ---------------- Next and previous days ----------------------#}
+
+        <form action="{% url 'next_' weekDay %}" method="get">
+            <button type="submit">Next</button>
+        </form>
+        <form action="{% url 'prev' weekDay%}" method="get">
+            <button type="submit">Previous</button>
+        </form>
+    </div>
+
+
+    {# ---------------- Week name display ----------------------#}
+    <div class="container">
+        <div class="weekName">
+            <p>{{ weekDay|date:"l d" }}</p>{# day of the week 1 #}
+        </div>
+
+        <div>
+            <p>{{ weekDay2|date:"l d" }}</p>{# day of the week #}
+        </div>
+        <div>
+            <p>{{ weekDay3|date:"l d" }}</p>{# day of the week #}
+        </div>
+
+        {#------------------  Display events in respective columns -------------------------#}
+        {#    Current day events #}
+        <div id="day1EventDisplay" class="day1EventDisplay">
+            {% for Events in display_events.day1_events %}
+                <!-- checkboxes for the events -->
+                {% if Events.is_completed == True %}
+                   <button onclick="location.href='{% url 'toggle_event' Events.id %}'"
+                           class="action-link">☑</button>
+                    <b id="eventBoxes"  class="eventBoxes" style="display: inline-block"><s>{{ Events.event_name }}</s></b>
+{#----------------------------------------------------------------------------------------------------#}
+
+                    {# Update Button image   #}
+                    <form style="display: inline-block" action="{% url 'updateEvent' Events.id %}" method="get">
+                    <button type="submit"><img class="button_image_style" src="/staticfiles/images/edit-Icon.png" alt="Edit button"></button>
+                </form>
+
+                {# Delete Events Button image #}
+                <form  action="{% url 'deleteEvent' Events.id %}" onclick="return confirm('Are you sure you want to delete {{ Events.event_name}} ?');" style="display: inline-block"  method="get">
+
+                    <button type="submit"><img class="button_image_style" src="/staticfiles/images/delete-icon.png" alt="Delete button "></button>
+                </form>
+{#----------------------------------------------------------------------------------------------------#}
+
+                    <br><s>{{ Events.description }}</s><br>
+
+                {#   Right click menu #}
+                <div id="EventRightClickMenu" class="EventRightClickMenu" >
+                    <ul>
+                        <li><a href="{% url 'updateEvent' Events.id %}">Edit</a></li>
+                        <li><a href="{% url 'deleteEvent' Events.id %}" onclick="return confirm('Are you sure you want to delete {{ Events.event_name}} ??');">Delete</a></li>
+                        <li><a href="#">View More</a></li>
+                    </ul>
+                </div>
+
+
+
+                {% else %}
+{#------------------- If Not checked ---------------------------------#}
+                   <button onclick="location.href='{% url 'toggle_event' Events.id %}'"
+                           class="action-link"></button>
+                    <b id="eventBoxes"  class="eventBoxes" style="display: inline-block">{{ Events.event_name }}</b>
+{#----------------------------------------------------------------------------------------------------#}
+
+                    {# Update Button image   #}
+                    <form style="display: inline-block" action="{% url 'updateEvent' Events.id %}" method="get">
+                    <button type="submit"><img class="button_image_style" src="/staticfiles/images/edit-Icon.png" alt="Edit button"></button>
+                </form>
+
+                {# Delete Events Button image #}
+                <form  action="{% url 'deleteEvent' Events.id %}" onclick="return confirm('Are you sure you want to delete {{ Events.event_name}} ?');" style="display: inline-block"  method="get">
+
+                    <button type="submit"><img class="button_image_style" src="/staticfiles/images/delete-icon.png" alt="Delete button "></button>
+                </form>
+{#----------------------------------------------------------------------------------------------------#}
+
+                    <br><s>{{ Events.description }}</s><br>
+
+                {#   Right click menu #}
+                <div id="EventRightClickMenu" class="EventRightClickMenu" >
+                    <ul>
+                        <li><a href="{% url 'updateEvent' Events.id %}">Edit</a></li>
+                        <li><a href="{% url 'deleteEvent' Events.id %}" onclick="return confirm('Are you sure you want to delete {{ Events.event_name}} ?');">Delete</a></li>
+                        <li><a href="#">View More</a></li>
+                    </ul>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+
+
+{# ------------------------------------------- Day 2 events --------------------------------------   #}
+        {# Next day events #}
+        <div class="day2EventDisplay">
+            {% for Events in display_events.day2_events %}
+                 <!-- checkboxes for the events -->
+                {% if Events.is_completed == True %}
+                   <button onclick="location.href='{% url 'toggle_event' Events.id %}'"
+                           class="action-link">☑</button>
+                    <b id="eventBoxes"  class="eventBoxes" style="display: inline-block"><s>{{ Events.event_name }}</s></b>
+{#----------------------------------------------------------------------------------------------------#}
+
+                    {# Update Button image   #}
+                    <form style="display: inline-block" action="{% url 'updateEvent' Events.id %}" method="get">
+                    <button type="submit"><img class="button_image_style" src="/staticfiles/images/edit-Icon.png" alt="Edit button"></button>
+                </form>
+
+                {# Delete Events Button image #}
+                <form  action="{% url 'deleteEvent' Events.id %}" onclick="return confirm('Are you sure you want to delete {{ Events.event_name}} ?');" style="display: inline-block"  method="get">
+
+                    <button type="submit"><img class="button_image_style" src="/staticfiles/images/delete-icon.png" alt="Delete button "></button>
+                </form>
+{#----------------------------------------------------------------------------------------------------#}
+
+                    <br><s>{{ Events.description }}</s><br>
+
+                {#   Right click menu #}
+                <div id="EventRightClickMenu" class="EventRightClickMenu" >
+                    <ul>
+                        <li><a href="{% url 'updateEvent' Events.id %}">Edit</a></li>
+                        <li><a href="{% url 'deleteEvent' Events.id %}" onclick="return confirm('Are you sure you want to delete {{ Events.event_name}} ?');">Delete</a></li>
+                        <li><a href="#">View More</a></li>
+                    </ul>
+                </div>
+
+
+
+                {% else %}
+{#------------------- If Not checked ---------------------------------#}
+                   <button onclick="location.href='{% url 'toggle_event' Events.id %}'"
+                           class="action-link"></button>
+                    <b id="eventBoxes"  class="eventBoxes" style="display: inline-block">{{ Events.event_name }}</b>
+{#----------------------------------------------------------------------------------------------------#}
+
+                    {# Update Button image   #}
+                    <form style="display: inline-block" action="{% url 'updateEvent' Events.id %}" method="get">
+                    <button type="submit"><img class="button_image_style" src="/staticfiles/images/edit-Icon.png" alt="Edit button"></button>
+                </form>
+
+                {# Delete Events Button image #}
+                <form  action="{% url 'deleteEvent' Events.id %}" onclick="return confirm('Are you sure you want to delete {{ Events.event_name}} ?');" style="display: inline-block"  method="get">
+
+                    <button type="submit"><img class="button_image_style" src="/staticfiles/images/delete-icon.png" alt="Delete button "></button>
+                </form>
+{#----------------------------------------------------------------------------------------------------#}
+
+                    <br><s>{{ Events.description }}</s><br>
+
+                {#   Right click menu #}
+                <div id="EventRightClickMenu" class="EventRightClickMenu" >
+                    <ul>
+                        <li><a href="{% url 'updateEvent' Events.id %}">Edit</a></li>
+                        <li><a href="{% url 'deleteEvent' Events.id %}" onclick="return confirm('Are you sure you want to delete {{ Events.event_name}} ?');">Delete</a></li>
+                        <li><a href="#">View More</a></li>
+                    </ul>
+                </div>
+                {% endif %}
+
+
+            {% endfor %}
+        </div>
+
+        {#  Third day events  #}
+        <div class="day3EventDisplay">
+            {% for Events in display_events.day3_events %}
+                 <!-- checkboxes for the events -->
+                {% if Events.is_completed == True %}
+                   <button onclick="location.href='{% url 'toggle_event' Events.id %}'"
+                           class="action-link">☑</button>
+                    <b id="eventBoxes"  class="eventBoxes" style="display: inline-block"><s>{{ Events.event_name }}</s></b>
+{#----------------------------------------------------------------------------------------------------#}
+
+                    {# Update Button image   #}
+                    <form style="display: inline-block" action="{% url 'updateEvent' Events.id %}" method="get">
+                    <button type="submit"><img class="button_image_style" src="/staticfiles/images/edit-Icon.png" alt="Edit button"></button>
+                </form>
+
+                {# Delete Events Button image #}
+                <form  action="{% url 'deleteEvent' Events.id %}" onclick="return confirm('Are you sure you want to delete {{ Events.event_name}} ?');" style="display: inline-block"  method="get">
+
+                    <button type="submit"><img class="button_image_style" src="/staticfiles/images/delete-icon.png" alt="Delete button "></button>
+                </form>
+{#----------------------------------------------------------------------------------------------------#}
+
+                    <br><s>{{ Events.description }}</s><br>
+
+                {#   Right click menu #}
+                <div id="EventRightClickMenu" class="EventRightClickMenu" >
+                    <ul>
+                        <li><a href="{% url 'updateEvent' Events.id %}">Edit</a></li>
+                        <li><a href="{% url 'deleteEvent' Events.id %}" onclick="return confirm('Are you sure you want to delete {{ Events.event_name}} ?');">Delete</a></li>
+                        <li><a href="#">View More</a></li>
+                    </ul>
+                </div>
+
+
+
+                {% else %}
+{#------------------- If Not checked ---------------------------------#}
+                   <button onclick="location.href='{% url 'toggle_event' Events.id %}'"
+                           class="action-link"></button>
+                    <b id="eventBoxes"  class="eventBoxes" style="display: inline-block">{{ Events.event_name }}</b>
+{#----------------------------------------------------------------------------------------------------#}
+
+                    {# Update Button image   #}
+                    <form style="display: inline-block" action="{% url 'updateEvent' Events.id %}" method="get">
+                    <button type="submit"><img class="button_image_style" src="/staticfiles/images/edit-Icon.png" alt="Edit button"></button>
+                </form>
+
+                {# Delete Events Button image #}
+                <form  action="{% url 'deleteEvent' Events.id %}" onclick="return confirm('Are you sure you want to delete {{ Events.event_name}} ?');" style="display: inline-block"  method="get">
+
+                    <button type="submit"><img class="button_image_style" src="/staticfiles/images/delete-icon.png" alt="Delete button "></button>
+                </form>
+{#----------------------------------------------------------------------------------------------------#}
+
+                    <br><s>{{ Events.description }}</s><br>
+
+                {#   Right click menu #}
+                <div id="EventRightClickMenu" class="EventRightClickMenu" >
+                    <ul>
+                        <li><a href="{% url 'updateEvent' Events.id %}">Edit</a></li>
+                        <li><a href="{% url 'deleteEvent' Events.id %}" onclick="return confirm('Are you sure you want to delete {{ Events.event_name}} ?');">Delete</a></li>
+                        <li><a href="#">View More</a></li>
+                    </ul>
+                </div>
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+    </div>
+{#    <form action="{% url 'next_' weekDay%}" method="get">#}
+{#        <button class="responsiveButtonState" type="submit">></button>#}
+{#    </form>#}
+</div>
+
+
+{# ------------------- Responsive display events -------------------#}
+<div class="responsiveContainer">
+
+    {#Empty space for container#}
+    <span class="emptySpace"> </span>
+
+
+    <div class="responsiveWeekName">
+        <p>{{ weekDay|date:"l d" }}</p>{# day of the week 1#}
+    </div>
+
+    {#Empty space for container#}
+    <span class="emptySpace"> </span>
+
+    {#        ------------------  Display events in respective columns -------------------------#}
+    <form action="{% url 'prev' weekDay%}" method="get">
+        <button class="responsiveButtonState" type="submit"><</button>
+    </form>
+    {#            Current day events#}
+    <div id = "event" class="day1EventDisplayResponsive">
+        {% for Events in display_events.day1_events %}
+            <br> <b>{{ Events.event_name }}</b>
+            <br>{{ Events.description }}<br>
+
+
+
+
+
+        {% endfor %}
+    </div>
+    <form action="{% url 'next_' weekDay%}" method="get">
+        <button class="responsiveButtonState" type="submit">></button>
+    </form>
+</div>
+
+
+
+
+
+{#------------ Add new event -------------------#}
+{#----- pop up --------#}
+<dialog id="newEvents" class="modal">
+    <div class="modal-box">
+        {# ---- New Event Form -----  #}
+        <form method="dialog">
+        <h3 style="display: inline-block">Add Event</h3> {# Title #}
+
+        <button style="display: inline-block;" class="X-button">X</button>
+        </form>
+        <form method="post" action="{% url 'add_event' %}" >
+            {% csrf_token %}
+            {{ event_form.as_p }}
+                            <button type="submit">Submit</button>
+
+        </form>
+    </div>
+</dialog>
+
+
+{#------------ Update event -------------------#}
+{#----- pop up --------#}
+<dialog id="updateEvents" class="modal">
+    <div class="modal-box">
+
+        {# --------- Update Form -----  #}
+        <h3>Update Event</h3> {# Title #}
+       <form method="post" autocomplete="off" >
+    {% csrf_token %}
+    {{ event_form.as_p }}
+    <button type="submit">Update</button>
+</form>
+        <div class="modal-action">
+            <form method="dialog">
+                <button class="btn">Close</button>
+            </form>
+        </div>
+    </div>
+</dialog>
+
+
+
+<script src="{% static 'javascript/RighClickMenu_script.js' %}" defer></script>
+
+</body>
+</html>

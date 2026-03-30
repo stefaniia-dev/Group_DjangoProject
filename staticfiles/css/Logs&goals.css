@@ -1,0 +1,87 @@
+/*Pop up box styling*/
+.modal-box{
+  color: var(--BBDblack);
+  text-align: center;
+}
+
+.modal {
+  position: fixed;
+  top: 25%;
+  left: 40%;
+}
+
+.main_content h1 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 40px;
+    text-align: center;
+    font-family: raleway;
+    font-weight: 560;
+    letter-spacing: 12px;
+    padding: 6px;
+    color: var(--BBDdarkBlue);
+}
+
+div.log-grid{
+  grid-template: "mainA sidebar" "mainB sidebar";
+
+}
+
+
+/*.log-grid > div {*/
+/*  background-color: #f1f1f1;*/
+/*  border: 1px solid black;*/
+/*  padding: 10px;*/
+/*  text-align: center;*/
+/*}*/
+
+
+
+/** {*/
+/*  box-sizing: border-box;*/
+/*}*/
+
+/*div {*/
+/*  background: white;*/
+/*  height: 30vh;*/
+/*  padding: 16px;*/
+/*  border-radius: 7px;*/
+/*  display: grid;*/
+/*  grid-gap: 0.5rem;*/
+/*}*/
+
+
+/*.log-grid {*/
+/*   display: grid;*/
+/*  grid-template-columns: repeat(3, 1fr);*/
+/*    row-gap: 20px;*/
+/*  column-gap: 100px;*/
+/*    max-width: 940px;*/
+/*     word-wrap: break-word;!*wraps words*!*/
+
+/*!*    scrolling*!*/
+/*    height: 100%;*/
+/*    grid-template-rows: 50px 400px;*/
+
+/*}*/
+
+/*.log-grid > div {*/
+/*  background-color: #f1f1f1;*/
+/*  border: 1px solid black;*/
+/*  padding-left: 10px;*/
+/*  right: 10px;*/
+/*  !*font-size: 30px;*!*/
+/*  text-align: center;*/
+/*}*/
+
+/*.log-name{*/
+/*    text-justify: distribute-center-last ;*/
+/*  grid-column: auto;*/
+/*  grid-row: auto;*/
+/*}*/
+
+/*.item-display{*/
+/*     grid-column: auto;!*column start*!*/
+/*  grid-row: auto ;!*row start and end*!*/
+/*    overflow: auto;!*makes it scrollable when too big*!*/
+/*}*/

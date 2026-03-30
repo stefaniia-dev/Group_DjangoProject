@@ -1,0 +1,203 @@
+/*Controls size and colours of django forms*/
+
+.main_content h1 {
+    margin-top: 40px;
+    font-size: 40px;
+    text-align: center;
+    font-family: raleway;
+    font-weight: 560;
+    letter-spacing: 12px;
+    padding: 6px;
+    color: var(--BBDdarkBlue);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 20px;
+    column-gap: 100px;
+    max-width: 940px;
+    word-wrap: break-word; /*wraps words*/
+
+    /*    scrolling*/
+    height: 100%;
+    grid-template-rows: 50px 400px;
+
+}
+
+.container > div {
+    background-color: var(--BBDpink);
+    border: 1px solid var(--BBDdarkTan);
+    padding-left: 10px;
+    right: 10px;
+    /*font-size: 30px;*/
+    text-align: center;
+}
+
+.weekName {
+    text-justify: auto;
+    grid-column: 1/2;
+    grid-row: 1;
+
+    color: var(--BBDdarkBlue);
+    font-family: Calibri;
+    font-size: 20px;
+    font-weight: 570;
+}
+
+.day1EventDisplay {
+    grid-column: 1; /*column start*/
+    grid-row: 2 / 6; /*row start and end*/
+    overflow: auto; /*makes it scrollable when too big*/
+}
+
+
+.day2EventDisplay {
+    grid-column: 2; /*column start*/
+    grid-row: 2 / 6; /*row start and end*/
+    overflow: auto; /*makes it scrollable when too big*/
+
+}
+
+.day3EventDisplay {
+    grid-column: 3; /*column start*/
+    grid-row: 2 / 6; /*row start and end*/
+    overflow: auto; /*makes it scrollable when too big*/
+
+}
+
+.important_colour {
+    color: var(--BBDdarkPink);
+}
+
+.modal {
+    width: 500px; /*change modal/box size*/
+    position: fixed;
+    top: 25%;
+    left: 40%;
+}
+
+button {
+    display: inline-block;
+}
+.buttonies form {
+    display:inline-block;
+    margin-bottom: 40px;
+}
+
+    .normalButtonState {
+        /*Makes buttons display horizontally*/
+        display: inline-block;
+    }
+
+    .responsiveButtonState { /*hide responsive buttons*/
+        display: none;
+    }
+
+    .X-button {
+        margin-left: 250px
+    }
+
+    /* ---------------- Responsive weekly schedule ---------------------------*/
+    /*Hides and shows nav bars*/
+    @media all and (max-width: 1000px) {
+        .container {
+            display: none;
+        }
+
+        .normalButtonState {
+            display: none; /*hide other button*/
+        }
+
+        .responsiveButtonState { /*display responsive buttons*/
+            display: block;
+            /*grid-row: 1;*/
+
+        }
+
+
+        .responsiveContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            word-wrap: break-word; /*wraps words*/
+            /*    scrolling*/
+            height: 100%;
+            margin-top: 350px;
+            gap: 50px;
+        }
+
+        .responsiveContainer > div {
+            background-color: var(--BBDpink);
+            border: var(--BBDdarkTan);
+            text-align: center;
+
+
+        }
+
+        .responsiveWeekName {
+            text-justify: auto;
+            font-size: 40px;
+            width: 500px;
+            height: 100px;
+
+            color: var(--BBDdarkBlue);
+            font-family: Calibri;
+            font-size: 20px;
+            font-weight: 570;
+
+
+        }
+
+        .emptySpace {
+            width: 150px;
+            height: 100px;
+        }
+
+
+        .day1EventDisplayResponsive {
+            overflow: auto; /*makes it scrollable when too big*/
+            font-size: 50px;
+            width: 500px;
+            height: 800px;
+
+        }
+
+        .X-button {
+            margin-left: 410px
+        }
+
+    }
+
+
+    @media all and (max-width: 800px) {
+        .responsiveContainer {
+            margin-top: 200px;
+            gap: 10px;
+        }
+
+        .emptySpace {
+            width: 110px;
+            height: 100px;
+        }
+
+        .responsiveWeekName {
+            text-justify: auto;
+            font-size: 30px;
+            width: 300px;
+            height: 80px;
+        }
+
+        .day1EventDisplayResponsive {
+            overflow: auto; /*makes it scrollable when too big*/
+            font-size: 25px;
+            width: 300px;
+            height: 600px;
+
+        }
+
+
+    }
+
+

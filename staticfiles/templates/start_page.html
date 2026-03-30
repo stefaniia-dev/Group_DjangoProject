@@ -1,0 +1,89 @@
+{# Start page, so it is index page #}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>School manager</title>
+        {% load static %}
+        <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+              integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+              crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href = "{% static 'css/first_page.css' %}">
+        {# <link rel="icon" type="image/x-icon" href="/staticfiles/images/favicon.png">  Favicon image of  logo #}
+
+    </head>
+    <body>
+
+        <header>
+            <div class = "navbar">
+
+                <div class="logo"><a href="#"> BombasticDebuggers</a></div>
+
+                <ul class="links">
+                    <li> <a href="{% url 'register' %}"> Register </a> </li>
+                    <li> <a href="{% url 'log_in' %}"> Log in </a> </li>
+                </ul>
+
+                <div class = "toggle_btn">
+                <i class="fa-solid fa-bars"></i> {# for three lines slide bar #}
+                </div>
+            </div>
+
+            <div class="dropdown_menu">
+                <li> <a href="{% url 'register' %}"> Register </a> </li>
+                <li> <a href="{% url 'log_in' %}"> Log in </a> </li>
+            </div>
+        </header>
+        <script>
+            const toggleBtn = document.querySelector('.toggle_btn')
+            const toggleBtnIcon = document.querySelector('.toggle_btn i')
+            const dropDownMenu= document.querySelector('.dropdown_menu')
+
+            toggleBtn.onclick = function()
+               {
+                   dropDownMenu.classList.toggle('open')
+                   const isOpen = dropDownMenu.classList.contains('open')
+
+                   toggleBtnIcon.classList = isOpen
+                   ? 'fa-solid fa-xmark'
+                       : 'fa-solid fa-bars'
+               }
+        </script>
+
+    <section class = "container">
+    <div class="glass-container item-1">
+        <h1 id="typing-text"></h1>
+    </div>
+        <div class ="item-2">
+        <h2> <img src="/staticfiles/images/For_start_page.png" alt = "picture of the calendar" width="100%">  </h2>
+        </div>
+    </section>
+
+    <div class ="container2">
+        <h2> Watch prototype of our app</h2>
+    </div>
+        <div class="gif-container">
+            <img class="gif" src="/staticfiles/images/P.gif" alt="Gif of the app" width="50%"/>
+        </div>
+    <script>
+
+    const text = "Hey! Tired of the lack of organisation? Of missing deadlines and getting F for assignments? Welcome to our organiser! Get started easily by  registering";
+    const typingTarget = document.getElementById("typing-text");
+    let index = 0;
+
+    function typeWriter() {
+        if (index < text.length) {
+            typingTarget.innerHTML += text.charAt(index);
+            index++;
+            setTimeout(typeWriter, 40); // control typing speed here
+        }
+    }
+
+    window.onload = typeWriter;
+</script>
+
+    </body>
+</html>
+

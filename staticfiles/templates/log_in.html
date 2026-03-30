@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>School manager</title>
+      {% load static %}
+    <link rel="stylesheet" href = "{%static 'css/login.css' %}">
+
+</head>
+<body>
+    <div class="glass-container">
+        <div class="login-box">
+
+            <form method="POST" autocomplete="off">
+
+              {% csrf_token %}
+
+
+                <input type="text" id="username" name="username" required placeholder="Username" >
+                <input type="password" id="password" name="password" required placeholder="Password" >
+
+                <div class="options">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for ="remember">Remember me</label>
+                </div>
+                <button type ="submit">Login</button>
+                <p>Don't have an account? <a href="{% url 'register' %}" class = a>Register </a></p>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

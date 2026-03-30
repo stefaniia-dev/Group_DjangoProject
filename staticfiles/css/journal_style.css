@@ -1,0 +1,82 @@
+/*Makes everything in the body fit in the middle and not be hidde behind nav bar*/
+.center_journal {
+    margin-left: 15%;
+    padding: 16px 16px; /* top padding, left side padding*/
+    height: 100px;
+}
+
+.container {
+    position: absolute;
+    display: flex;
+    flex-direction: row; /* Stack forms vertically */
+    gap: 230px;
+    top: 28%;
+    left: 22%;
+}
+
+body {
+    background-color: #F3D1B5;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* --------buttons-------- */
+button {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: #ADB9BC;
+}
+
+button[type="button"]:hover {
+    background-color: #E68E77;
+}
+
+button[type="submit"]:hover {
+    background-color: #E68E77;
+}
+
+
+/* -------------form styling------------ */
+form textarea {
+    height: 23px;
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
+    resize: vertical;
+    overflow: hidden;
+}
+
+form input {
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form textarea {
+    overflow: hidden; /* hides the scroll bar */
+}
+
+/* ------------- view more entries styling------------ */
+.journal_entries {
+    display: grid;
+    grid-template-columns: 37rem max-content 37rem;
+}
+
+.entry {
+    max-width: 29rem;
+    padding: 10px;
+}
+
+

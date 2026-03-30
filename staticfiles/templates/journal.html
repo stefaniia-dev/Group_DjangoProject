@@ -1,0 +1,88 @@
+{% load static %}{# allows css to work #}
+{% include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Journal</title>
+    <link rel="stylesheet" href="{% static 'css/journal_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common_style.css' %}">
+    {# links to styling #}
+</head>
+
+<body>
+
+<!--Centers Content with Navbar-->
+<div class="center_journal">
+
+    <button type="button" class="button"><a href="{% url 'viewJournalEntries' %}">View Your Journal Entries</a></button>
+
+    <!--if on the 'viewJournalEntries' page, then displays "Back To Journal" button-->
+    {% if request.path == '/viewJournalEntries/' %}  <!-- Adjust the path if necessary -->
+        <button type="button" class="button"><a href="{% url 'journal' %}">Back To Journal</a></button>
+    {% endif %}
+
+    <!--previous and next buttons (for pagination pages of journal entries)-->
+    {% if page_obj.has_previous %}
+        <button type="button" class="button"><a href="?page={{ page_obj.previous_page_number }}">Previous Page</a></button>
+    {% endif %}
+
+    {% if page_obj.has_next %}
+        <button type="button" class="button"><a href="?page={{ page_obj.next_page_number }}">Next Page</a></button>
+    {% endif %}
+
+    <img src="/staticfiles/images/blue_open_notebook.png" alt="notebook background" width=100%>
+
+
+
+    <div class="container">
+
+        <!-- Add Journal Entry #1 Form -->
+        {% if entry_form %} <!-- only displays the form on journal page so that it doesn't appear when viewJournalEntries button is clicked -->
+            <form action="{% url 'add_entry' %}" method="POST">
+                {% csrf_token %}
+                {% for field in entry_form %}
+                    <div>
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        <!-- Skip rendering error messages -->
+                    </div>
+                {% endfor %}
+                <button type="submit">Save Entry</button>
+            </form>
+        {% endif %}
+
+        <!-- Add Journal Entry #2 Form -->
+        {% if entry_form %}
+            <form action="{% url 'add_entry' %}" method="POST">
+                {% csrf_token %}
+                {% for field in entry_form %}
+                    <div>
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        <!-- wont display error messages for unfilled out form fields -->
+                    </div>
+                {% endfor %}
+                <button type="submit">Save Entry</button>
+            </form>
+        {% endif %}
+
+        <!--displaying saved journal entries (when "view your entries button" is clicked)-->
+        <div class="journal_entries">
+            {% for entry in page_obj %} <!--loop through all the entries in the database-->
+                <div class="entry">
+                    <div>
+                        <h3>{{ entry.title }}</h3>
+                        <p>{{ entry.date_of_entry }}</p>
+                        <p>{{ entry.writing }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

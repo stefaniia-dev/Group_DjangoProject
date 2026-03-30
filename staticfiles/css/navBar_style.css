@@ -1,0 +1,240 @@
+
+
+/* --------------------------- Side navigation bar ---------------------------------*/
+.sideNav {
+  display: inline-block;
+  position: absolute;/* make it stay at the top*/
+  width: 14%;/*width of side nav box*/
+  height: 1000px;
+  background-color: var(--BBDlightBlue);
+
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  /* overflow: auto; ???????*/
+}
+
+/*Side nav text styling*/
+li a {
+  display: block;
+  width: 75%;
+  margin: 30px auto 30px auto;
+  padding: 15px 10px 15px 10px;
+  background-color: var(--BBDpink);
+  border-radius: 13px;
+
+  color: var(--BBDdarkPink);
+  text-decoration: none;
+  font-family: raleway;
+  font-size: 18px;
+  font-weight: 380;
+}
+
+/*When on tab*/
+li a.active {
+  background-color: var(--BBDteal);
+  color: var(--BBDdarkPink);
+}
+
+/*When not on tab*/
+li a:hover:not(.active) {
+  background-color: var(--BBDdarkPink);
+  color: white;
+}
+
+/*Makes everything in the body fit in the middle and not be hidde behind nav bar*/
+
+.main_content{
+    /*margin-left:20%;  ?????what?
+    padding:16px 16px; ?????? said top and left but doesnt do anything
+    height:100px; ?????*/
+
+}
+
+/*body{*/
+/*    overflow-y: hidden;!*makes it not possible to scroll*!*/
+/*    overflow-x: hidden;!*makes it not possible to scroll*!*/
+
+
+/* ------------------- Responsive nav bar -----------------------------*/
+/* Top/Hamburger nav bar*/
+.navdiv {
+    background: var(--BBDdarkBlue);
+    /*padding: 30px 0px 30px 30px; want logout to be closer to right*/
+}
+
+.default_nav {
+    display: grid;
+    grid-template-columns: 14% auto;
+    grid-template-areas: " homeLogo ";
+}
+
+.default_nav a {
+    justify-self: center;
+}
+.default_nav a img{
+    grid-area: homeLogo;
+    width: 100px;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.topNavDisplay {
+    display: grid;
+    grid-template-areas: " title . logoutNnotif";
+    grid-template-columns: auto 1fr auto;
+}
+
+.rightSideNav {
+    grid-area: logoutNnotif ;
+    justify-content: space-between;
+    margin: auto 0 20px 0;
+}
+
+/* for when the title was the link to cal
+.default_nav > a {
+    color: var(--BBDpink);
+    margin-right: 30px;
+    margin-left: 30px;
+
+    font-size: 35px;
+    font-family: raleway;
+    font-weight: 800;
+    font-style: normal;
+    text-decoration: none;
+}
+*/
+.logout {
+    grid-area:logoutButton ;
+    color: var(--BBDdarkBlue);
+    background-color: var(--BBDdarkTan);
+    border-radius: 9px;
+    width: auto;
+    margin: 50% 20px auto auto;
+    padding: 7px 10px 7px 10px;
+
+    font-family: raleway;
+    font-size: 18.5px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/*When on tab*/
+.logout.active {
+  background-color: var(--BBDteal);
+  color: var(--BBDdarkPink);
+}
+
+/*When not on tab*/
+.logout:hover:not(.active) {
+  background-color: var(--BBDdarkPink);
+  color: var(--BBDteal);
+}
+
+
+.title {
+    grid-area: title ;
+    color: var(--BBDpink);
+    position: relative;
+    top: 20px;
+    width: auto;
+    margin-left: 10px;
+
+    font-size: 80px;
+    font-family: raleway;
+    font-weight: 740;
+    letter-spacing: 3.5px;
+    font-style: normal;
+    text-decoration: none;
+
+}
+
+
+
+/*/MOBILE NAVBAR/*/
+.mobile_nav {
+    grid-column: span 2;
+    animation: appear 1s;
+    background: var(--BBDpink);
+}
+.hidden {
+    display: none;
+}
+.mobile_nav > a {
+    display: block;
+    padding: 10px;
+}
+.mobileShow {
+    display: none;
+}
+
+
+.notification-container {
+    position: relative;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.notification-dropdown {
+    display: none;
+    position: fixed;
+    top: 80px; /* Adjust based on your navbar height */
+    right: 20px;
+    width: 300px;
+    max-height: 400px;
+    background-color: #e59a83;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgb(206, 94, 68);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.notification-item {
+    padding: 20px;
+    border-bottom: 1px solid #b58282;
+      display: inline-block;
+
+}
+
+.notification-badge {
+    top: -5px;
+    right: -5px;
+    background-color: #e28c77;
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 10px;
+}
+
+
+
+/*Hides and shows nav bars*/
+@media all and (max-width: 1000px) {
+    .mobileHide {/* Hide top nav*/
+        display: none;
+    }
+    .mobileShow {/* Show responsive hamburger top nav*/
+        display: block;
+        margin: 30px;
+
+    }
+    .sideNav {/* Hide side nav*/
+        display: none;
+
+    }
+
+    .rightSideNav {
+    grid-area: logoutNnotif ;
+    justify-content: space-between;
+    margin: auto 0 35px 0;
+    }
+    .logout {
+    font-size: 33px;
+    }
+
+    .main_content{
+        margin-left:0;
+        padding:0;/* top padding, left side padding*/
+        height:00px;
+    }
+}
